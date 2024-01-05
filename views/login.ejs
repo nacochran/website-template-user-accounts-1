@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .signup-link a {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: -8px; /* Adjust the spacing based on your preference */
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <label for="identifier">Username or Email:</label>
+            <input type="text" id="identifier" name="identifier" value="<%= locals.values ? locals.values.identifier : '' %>" required>
+            <% if (locals.errors && locals.errors.user) { %>
+                <p class="error-message"><%= locals.errors.user %></p>
+            <% } %>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <% if (locals.errors && locals.errors.password) { %>
+                <p class="error-message"><%= locals.errors.password %></p>
+            <% } %>
+
+            
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="signup-link">
+            Don't have an account? <a href="/signup">Sign up</a>.
+        </div>
+    </div>
+</body>
+</html>
